@@ -1,0 +1,65 @@
+html,
+.container {
+    background-color: black;
+    color: white;
+}
+
+table,
+th,
+td {
+    border: 1px solid rgb(87, 87, 87);
+    border-collapse: collapse;
+}
+
+th {
+    background-color: rgb(255, 0, 0);
+}
+
+th,
+td {
+    white-space: nowrap;
+    font-weight: bolder;
+    padding: 2px;
+    text-align: center;
+}
+
+tr {
+    color: white;
+    background-color: black;
+}
+
+tr:hover {
+    background-color: yellow;
+    color: black;
+}
+
+select,
+option {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+
+input {
+    color: rgb(255, 0, 0);
+    border-radius: 10px;
+}
+
+table {
+    margin: 20px;
+    font-size: 15px;
+}
+
+.full {
+    width: 100%;
+    color: white;
+}
+
+#watermark {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    opacity: 0.5;
+    z-index: 99;
+    color: white;
+}
