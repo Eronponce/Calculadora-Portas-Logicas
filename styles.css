@@ -63,3 +63,22 @@ table {
     z-index: 99;
     color: white;
 }
+.vermelho{
+background-color: red;
+}
+
+img{
+padding-left: 500px;
+    height: 60px;
+    width: 170;
+}
+.alinhada{
+    text-align: center;
+    width: 200px;
+   
+
+}
+
+.alinhada>tw{
+    border: 1px white;
+}

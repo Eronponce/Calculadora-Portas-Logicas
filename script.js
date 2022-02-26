@@ -257,14 +257,6 @@ function xnor(map, primeiraProposicao, segundaProposicao) {
     criarTabelaVerdade(map);
 }
 
-/**
-  Método que retorna a coluna com os valores !negados, ou invertidos
-  
-  @param  map - tabela verdade
-  proposicao - primeira coluna para cálculo
-
-  @return - mapa completo, com a linha adicionada, oriunda do cáculo realizado.
-*/
 function not(map, proposicao) {
     var novaLinha = new Array();
     for (var i = 0; i < proposicao.length; i++) {
@@ -274,85 +266,31 @@ function not(map, proposicao) {
     criarTabelaVerdade(map);
 }
 
-/**
-Método utilizado para verificar se existe implicação lógica entre duas proposições
-@param primeiraProposicao - primeira coluna a ser verificada
-       segundaProposicao - segunda coluna a ser verificada
-@return true ou false - no caso se existe implicação lógica ou não
-*/
-function implica(primeiraProposicao, segundaProposicao) {
-    implicacaoTrue = false;
-    implicaFalse = true;
-    var implicacoes = "";
+function mux(map, primeiraProposicao, segundaProposicao, terceiraProposicao) {
+    var novaLinha = new Array();
     for (var i = 0; i < primeiraProposicao.length; i++) {
-        if (primeiraProposicao[i]) {
-            if (segundaProposicao[i]) {
-                implicacaoTrue = true;
-            } else {
-
-                implicaFalse = false;
-                implicacoes += i + 1 + "º, ";
-            }
+        if (primeiraProposicao[i] == false && segundaProposicao[i] == false && terceiraProposicao[i]== false) {
+            novaLinha.push(false);
+        } else if ((primeiraProposicao[i] == false) && (segundaProposicao[i] == false) && (terceiraProposicao[i])) {
+            novaLinha.push(false);
+        } else if ((primeiraProposicao[i] == false) && segundaProposicao[i] && (terceiraProposicao[i] == false)) {
+            novaLinha.push(true);
+        }else if ((primeiraProposicao[i] == false) && segundaProposicao[i] && terceiraProposicao[i]) {
+            novaLinha.push(true);
+        }else if (primeiraProposicao[i] && (segundaProposicao[i]== false) && (terceiraProposicao[i]== false)) {
+            novaLinha.push(false);
+        }else if (primeiraProposicao[i]  && (segundaProposicao[i]== false )&& terceiraProposicao[i]) {
+            novaLinha.push(true);
+        }else if ((primeiraProposicao[i] == false) && segundaProposicao[i] && (terceiraProposicao[i]== false)) {
+            novaLinha.push(false);
+        }else if (primeiraProposicao[i] && segundaProposicao[i] && terceiraProposicao[i]) {
+            novaLinha.push(true);
+        }else {
+            novaLinha.push(false);
         }
     }
-    if (implicacaoTrue && implicaFalse) {
-        document.getElementById("tela").value = "Existe implicação pois os V condizem com V";
-    } else {
-        document.getElementById("tela").value = "Não tem implicação, pois na " + implicacoes + "linhas a verdade nao implica em falso";
-    }
-}
-
-/*
-Outro método de implicação lógica, utilizando uma lógica diferente
-function implica2(primeiraProposicao, segundaProposicao){
-  var posicoesPrimeiroArray = new Array();
-  var posicoesSegundoArray = new Array();
-  var implica = false;
-  for(var i=0; i < primeiraProposicao.length; i++){
-    if(primeiraProposicao[i]){
-      posicoesPrimeiroArray.push(i);
-    }
-    if(segundaProposicao[i]){
-      posicoesSegundoArray.push(i);
-    }
-  }
-  if(posicoesPrimeiroArray.length > posicoesSegundoArray.length){
-    return implica;
-  }
-  for(var j = 0; j < posicoesPrimeiroArray.length; j++){
-    if(posicoesPrimeiroArray[j] == posicoesSegundoArray[j]){
-      implica = true;
-    }else{
-      implica = false;
-      return implica
-    }
-  }
-  return implica
-}
-*/
-
-/**
-Método utilizado para verificar a equivalência entre duas proposições
-@param primeiraProposicao - primeira proposição a ser verificada
-       segundaProposicao - segunda proposicao a ser verificada
-
-@return - true or false - Se existe equivalência ou não e um texto
-explicativo ao usuário
-*/
-function equivale(primeiraProposicao, segundaProposicao) {
-    var boolean = true;
-    var equivalencias = "";
-    for (var i = 0; i < primeiraProposicao.length; i++) {
-        if (primeiraProposicao[i] != segundaProposicao[i]) {
-            boolean = false;
-            equivalencias += i + 1 + "º, "
-        }
-    }
-    if (boolean) {
-        document.getElementById("tela").value = "São equivalentes os V condizem com V e F condizem com F";
-    } else {
-        document.getElementById("tela").value = "Não sao equivalentes, pois na " + equivalencias + "linhas as 2 proposições não são iguais";
-    }
+    map.set(map.size, novaLinha);
+    criarTabelaVerdade(map);
 }
 
 /**
@@ -380,6 +318,12 @@ function atualizarColunas() {
         opt2.text = nomes[j];
         opt2.id = 2;
         selectSegunda.add(opt2);
+    }for (var j = 0; j < map.size; j++) {
+        var opt3 = document.createElement("option");
+        opt3.value = j;
+        opt3.text = nomes[j];
+        opt3.id = 3;
+        selectTerceira.add(opt3);
     }
 }
 /**
@@ -390,13 +334,15 @@ logicos e proposições
 @return - logica de cada fator logico escrito na tela 
 */
 function inserirCalculos() {
-    var valorPrimeira = parseInt(document.getElementById("primeiraOpcao").value);
     var valorCalculo = parseInt(document.getElementById("calculo").value);
+
+    var valorPrimeira = parseInt(document.getElementById("primeiraOpcao").value);
     var valorSegundo = parseInt(document.getElementById("segundaOpcao").value);
-    var nomePrimeira =
-        document.getElementById("primeiraOpcao").options[valorPrimeira].text;
-    var nomeSegunda =
-        document.getElementById("segundaOpcao").options[valorSegundo].text;
+    var valorterceira = parseInt(document.getElementById("terceiraOpcao").value);
+
+    var nomePrimeira = document.getElementById("primeiraOpcao").options[valorPrimeira].text;
+    var nomeSegunda = document.getElementById("segundaOpcao").options[valorSegundo].text;
+    var nomeTerceira = document.getElementById("terceiraOpcao").options[valorterceira].text;
     switch (valorCalculo) {
         case 1:
             nomes.push("(" + nomePrimeira + " AND " + nomeSegunda + ")");
@@ -423,12 +369,12 @@ function inserirCalculos() {
             nomes.push("NOT " + nomePrimeira);
             not(map, map.get(valorPrimeira));
             break;
-        case 6:
-            implica(map.get(valorPrimeira), map.get(valorSegundo));
-            break;
         case 7:
-            equivale(map.get(valorPrimeira), map.get(valorSegundo));
+            nomes.push("(" + nomePrimeira+ nomeSegunda + nomeTerceira+ " MUX " + ")");
+            mux(map, map.get(valorterceira), map.get(valorPrimeira),map.get(valorSegundo));
             break;
+        
+            
     }
     atualizarColunas();
 }

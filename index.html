@@ -2,78 +2,116 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora Verdade</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="./script.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Verdade</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="./script.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 </head>
 <div id="watermark">Eron Ponce e Leonardo Lima</div>
 
 <body class="container">
-    <label for="proposicoes">
-      <h3>Insira o número de Pinos</h3>
-    </label>
-    <input type="number" id="proposicoes" />
-    <button type="button " id="fazerTabela " class="btn btn-primary" onclick="criar()">
-      Faça a tabela
-    </button>
-    <table id="tabela"></table>
-    <div class="row">
-        <div class="col">
-            <h3>Modificar tabela verdade com lógica</h3>
-            <select id="primeiraOpcao" class="form-select">
-          <option selected>Primeira opção</option>
-        </select>
-          
-            <select id="segundaOpcao" class="form-select">
-          <option selected>Segunda opção</option>
-        </select>
-        <select id="calculo" class="form-select">
-          <option selected>Cálculo</option>
-          <option value="1">AND</option>
-          <option value="2">OR</option>
-          <option value="3">NAND</option>
-          <option value="4">XOR</option>
-          <option value="5">XNOR</option>
-          <option value="6">NOT</option>
-          <option value="8">MUX</option>
-          <option value="9">DMUX</option>
-        </select>
-            <button type="button" id="inserir" class="btn btn-primary" onclick="inserirCalculos()">
-          Faça a operação determinada
-        </button>
-        </div>
-
-    </div>
-
-    <div class="row">
-      <div class="col">
-          <select id="primeiraOpcao" class="form-select">
+  <label for="proposicoes">
+    <h3>Insira o número de Pinos</h3>
+  </label>
+  <input type="number" id="proposicoes" />
+  <button type="button " id="fazerTabela " class="btn btn-primary" onclick="criar()">
+    Faça a tabela
+  </button>
+  <table id="tabela"></table>
+  <div class="row">
+    <div class="col">
+      <h3>Modificar tabela verdade com lógica</h3>
+      <select id="primeiraOpcao" class="form-select">
         <option selected>Primeira opção</option>
       </select>
-          <select id="segundaOpcao" class="form-select">
+
+      <select id="segundaOpcao" class="form-select">
         <option selected>Segunda opção</option>
       </select>
-      <select id="terceiraOpcao" class="form-select">
-        <option selected>Terceira opção</option>
+      <select id="terceiraOpcao" class="form-select vermelho">
+        <option selected>Seletor</option>
       </select>
       <select id="calculo" class="form-select">
         <option selected>Cálculo</option>
-        <option value="8">MUX</option>
-        <option value="9">DMUX</option>
+        <option value="1" class="inner">AND</option>
+        <option value="2">OR</option>
+        <option value="3">NAND</option>
+        <option value="4">XOR</option>
+        <option value="5">XNOR</option>
+        <option value="6">NOT</option>
+        <option value="7">MUX</option>
+        <option value="8">DMUX</option>
       </select>
-          <button type="button" id="inserir" class="btn btn-primary" onclick="inserirCalculos()">
-        Faça a operação determinada
+      <button type="button" id="inserir" class="btn btn-primary" onclick="inserirCalculos()">
+        Operações com 2 sinais lógicos
       </button>
-      </div>
+    </div>
 
   </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js " integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n " crossorigin="anonymous "></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous "></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js " integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6 " crossorigin="anonymous "></script>
+
+  <div class="alinhada">
+    <tr>
+      <div class="inner">
+        Porta AND
+        <img src="./porta logicas/AND.jpg" alt="porta AND">
+      </div>
+    </tr>
+    <tr>
+      <div class="inner">
+        Porta OR
+        <img src="./porta logicas/OR.jpg" alt="porta OR">
+      </div>
+    </tr>
+    <tr>
+      <div class="inner">
+        Porta XOR
+        <img src="./porta logicas/XOR.jpg" alt="porta XOR">
+      </div>
+    </tr>
+
+
+    <tr>
+      <div class="inner">
+        Porta XNOR
+        <img src="./porta logicas/XNOR.jpg" alt="porta XNOR">
+      </div>
+    </tr>
+    <tr>
+      <div class="inner">
+        Porta NAND
+        <img src="./porta logicas/NAND.jpg" alt="porta NAND">
+      </div>
+    </tr>
+    <tr>
+      <div class="inner">
+        Porta NOR
+        <img src="./porta logicas/NOR.jpg" alt="porta NOR">
+      </div>
+
+    </tr>
+    <tr>
+      <div class="inner">
+        Porta NOT
+        <img src="./porta logicas/NOT.jpg" alt="porta NOT">
+      </div>
+    </tr>
+  </div>
+
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js "
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n "
+    crossorigin="anonymous "></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js "
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo "
+    crossorigin="anonymous "></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js "
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6 "
+    crossorigin="anonymous "></script>
 </body>
 
 </html>
