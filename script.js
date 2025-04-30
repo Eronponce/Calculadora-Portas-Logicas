@@ -179,9 +179,9 @@ function nand(map, primeiraProposicao, segundaProposicao) {
     var novaLinha = new Array();
     for (var i = 0; i < primeiraProposicao.length; i++) {
         if (primeiraProposicao[i] && segundaProposicao[i]) {
-            novaLinha.push(false);
-        } else {
             novaLinha.push(true);
+        } else {
+            novaLinha.push(false);
         }
     }
     map.set(map.size, novaLinha);
@@ -215,7 +215,7 @@ function xor(map, primeiraProposicao, segundaProposicao) {
         }else if(! primeiraProposicao[i] && segundaProposicao[i]){
             novaLinha.push(true);
         } else {
-            novaLinha.push(true);
+            novaLinha.push(false);
         }
     }
     map.set(map.size, novaLinha);
@@ -225,8 +225,8 @@ function xor(map, primeiraProposicao, segundaProposicao) {
 function xor(map, primeiraProposicao, segundaProposicao) {
     var novaLinha = new Array();
     for (var i = 0; i < primeiraProposicao.length; i++) {
-        if (primeiraProposicao[i] && segundaProposicao[i]) {
-            novaLinha.push(false);
+        if ((primeiraProposicao[i] && segundaProposicao[i]) || !primeiraProposicao[i] && !segundaProposicao[i]) {
+            novaLinha.push(true);
         }else if(! primeiraProposicao[i] && segundaProposicao[i]){
             novaLinha.push(true);
         } else {
@@ -250,7 +250,7 @@ function xnor(map, primeiraProposicao, segundaProposicao) {
         ) {
             novaLinha.push(true);
         } else {
-            novaLinha.push(false);
+            novaLinha.push(true);
         }
     }
     map.set(map.size, novaLinha);
